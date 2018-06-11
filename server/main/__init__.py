@@ -16,6 +16,7 @@ db = SQLAlchemy()
 
 def create_app(config_type, package_name, package_path):
     app = Flask(__name__, instance_relative_config=True)
+
     # set default config
     # app_settings = os.getenv('APP_DEV_SETTINGS')
     app_settings = config[config_type]
