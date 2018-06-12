@@ -7,6 +7,8 @@
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS, cross_origin
+from flask_restful import Resource, Api
 
 from server.main.utils.common import register_blueprints
 from server.settings import config
@@ -17,6 +19,7 @@ db = SQLAlchemy()
 def create_app(config_type, package_name, package_path):
     app = Flask(__name__, instance_relative_config=True)
 
+    
     # set default config
     # app_settings = os.getenv('APP_DEV_SETTINGS')
     app_settings = config[config_type]

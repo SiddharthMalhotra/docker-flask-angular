@@ -10,4 +10,8 @@ export class AppService {
     return this.http.get('/api/ping');
   }
 
+  getTickets() {
+    return this.http.get('/api/tickets');
+  }
+
 }
