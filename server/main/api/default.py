@@ -11,6 +11,8 @@ from json import dumps
 route = Blueprint('default', __name__)
 api= Api(route)
 
+
+
 CORS(route)
 
 @route.route("/api")
@@ -19,15 +21,17 @@ def hello():
 
 @route.route("/api/ping")
 def ping():
-    return jsonify({"status": 200, "msg":"This message is coming from Flask backend!"})
+    return jsonify({"status": 200, "owner":"Siddharth Malhotra"})
 
 @route.route("/api/tickets")
 def tickets():
     url = "https://projectintern.zendesk.com/api/v2/tickets.json"
-    r = requests.get(url, auth=("codemalhotra@gmail.com"+"/token", "Uv55d2V7t1tCzZnN2Omyc4rIGCi1lksDBCpWjUSC"))
+    page_number = request.args["page"]
+    queryparam={ 'per_page': 25, 'page': page_number}
+    r = requests.get(url, auth=("codemalhotra@gmail.com"+"/token", "Uv55d2V7t1tCzZnN2Omyc4rIGCi1lksDBCpWjUSC"), params=queryparam)
     # new_dict = json.loads(r.text)
-    # print(new_dict)
-    return jsonify(r.text)
+    return r.text
+    # return jsonify(r.text)
     
 
 # class Tickets(Resource):
