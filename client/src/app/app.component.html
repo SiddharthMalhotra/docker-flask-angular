@@ -3,7 +3,7 @@
     Zendesk Ticket Viewer
   </h1>
   <h2>
-    Welcome, {{ownername}}
+    Welcome, {{ownerName}}
   </h2>
 </div>
 
@@ -11,18 +11,19 @@
   <!-- <button (click)="getTickets()">TICKETS</button> 
   <span>Your tickets: </span> -->
 
-  <ul class="pagination" *ngIf="tickets">
-    <li><button class="btn btn-primary" (click)="prevPage()" [disabled]="page_number==1">Previous</button></li>
-    <li><button class="btn btn-primary" (click)="nextPage()" [disabled]="ticketsObj.next_page==null">Next</button></li>
+  <ul class="pagination" *ngIf="ticketsObj" style="margin-left: 40%;">
+    <li style="margin-right: 15px;"><button class="btn btn-primary" (click)="prevPage()" [disabled]="pageNumber==1"><span class="glyphicon glyphicon-menu-left"></span> &nbsp;Previous</button></li>
+    <li><button class="btn btn-primary" (click)="nextPage()" [disabled]="ticketsObj.next_page==null">Next&nbsp; <span class="glyphicon glyphicon-menu-right"></span></button></li>
   </ul>
 
-  <div class="col-12">  
-    <div *ngIf="tickets">
+  <div class="loader" *ngIf="listLoading"></div>
+
+  <div class="col-12" class="cards-container">  
+    <div *ngIf="tickets" class="animate-bottom">
     <div class="card" *ngFor="let ticket of tickets" >
       <div class="card-body">
         <h5 class="card-title">{{ticket.subject | uppercase}}</h5>
-        <p class="card-text">Status : {{ticket.status | uppercase}}</p>
-        <!-- <a href="#" class="btn btn-primary">VIEW</a> -->
+        <p class="card-text">Status : <b>{{ticket.status | uppercase}}</b></p>
       </div>
     </div>
     </div>

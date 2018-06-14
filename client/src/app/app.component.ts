@@ -15,27 +15,31 @@ import { Observable } from 'rxjs';
 
 export class AppComponent implements OnInit {
   title = 'App!!';
-  ownername: string;
+  ownerName: string;
   ticketsObj: any;
   tickets: any;
   temp:string;
-  page_number: number;
+  pageNumber: number;
+  listLoading: Boolean
 
   constructor(private appService: AppService, private httpClient: HttpClient) {
   }
 
   
   ngOnInit() {
-    this.appService.testRoute().subscribe(data => this.ownername = data['owner']);
+    this.appService.testRoute().subscribe(data => this.ownerName = data['owner']);
     this.getTickets();
   }
 
     getTickets(){
+      this.tickets=null;
+      this.listLoading= true;
 
-      if(!this.page_number){
-        this.page_number= 1;
+      if(!this.pageNumber){
+        this.pageNumber= 1;
       }
-        this.appService.getTickets(this.page_number).subscribe(data => {
+        this.appService.getTickets(this.pageNumber).subscribe(data => {
+            this.listLoading= false;
             this.ticketsObj= data;
             console.log('data: ', this.ticketsObj);
             this.tickets= this.ticketsObj.tickets;
@@ -43,12 +47,12 @@ export class AppComponent implements OnInit {
     }
 
     nextPage(){
-      this.page_number++;
+      this.pageNumber++;
       this.getTickets();
     }
 
     prevPage(){
-      this.page_number--;
+      this.pageNumber--;
       this.getTickets();
     }
 }
