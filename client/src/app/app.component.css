@@ -1,3 +1,12 @@
+h2 {
+    margin-bottom: 10px;
+}
+
+h4 {
+    margin-bottom: 50px;
+    font-weight: 300;
+}
+
 .cards-container {
     height: 500px;
     overflow: scroll;
@@ -13,12 +22,39 @@
     margin-right: 7px;
     padding: 0px;
     text-align: center;
+    cursor: pointer;
+}
+
+.card:hover {
+    background: #30AABC;
+    color: #ffffff;
 }
 
 .btn {
     background-color: #30AABC;
     border-color: #30AABC;
+    color:#ffffff;
 }
+
+.card-title {
+    font-size: 14px;
+    font-weight: 800;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+
+  .modal-body{
+    font-size: 13px;
+  }
+
+  .status {
+    font-weight: 100;
+  }
 
 .loader {
     position: absolute;
@@ -33,18 +69,6 @@
     height: 80px;
     -webkit-animation: spin 1.5s linear infinite;
     animation: spin 1.5s linear infinite;
-  }
-
-  .card-title {
-    font-size: 13px;
-    font-weight: 800;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .card-text {
-    font-size: 17px;
   }
   
   @-webkit-keyframes spin {

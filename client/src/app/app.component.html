@@ -1,29 +1,27 @@
 <div style="text-align:center">
-  <h1>
-    Zendesk Ticket Viewer
-  </h1>
   <h2>
-    Welcome, {{ownerName}}
+    ZENDESK TICKET VIEWER
   </h2>
+  <h4>
+    Welcome, {{ownerName}}
+  </h4>
 </div>
 
 <div>
-  <!-- <button (click)="getTickets()">TICKETS</button> 
-  <span>Your tickets: </span> -->
-
   <ul class="pagination" *ngIf="ticketsObj" style="margin-left: 40%;">
-    <li style="margin-right: 15px;"><button class="btn btn-primary" (click)="prevPage()" [disabled]="pageNumber==1"><span class="glyphicon glyphicon-menu-left"></span> &nbsp;Previous</button></li>
-    <li><button class="btn btn-primary" (click)="nextPage()" [disabled]="ticketsObj.next_page==null">Next&nbsp; <span class="glyphicon glyphicon-menu-right"></span></button></li>
+    <li style="margin-right: 15px;"><button class="btn btn-primary" (click)="prevPage()" [disabled]="pageNumber==1"> &lt; &nbsp; Previous</button></li>
+    <li><button class="btn btn-primary" (click)="nextPage()" [disabled]="ticketsObj.next_page==null">Next &nbsp; ></button></li>
   </ul>
 
   <div class="loader" *ngIf="listLoading"></div>
 
   <div class="col-12" class="cards-container">  
     <div *ngIf="tickets" class="animate-bottom">
-    <div class="card" *ngFor="let ticket of tickets" >
+    <div class="card" *ngFor="let ticket of tickets" (click)="openTicket(ticket)">
       <div class="card-body">
         <h5 class="card-title">{{ticket.subject | uppercase}}</h5>
-        <p class="card-text">Status : <b>{{ticket.status | uppercase}}</b></p>
+        <div class="card-text"><div>Status : <b>{{ticket.status | uppercase}}</b></div></div>
+        <div class="card-text" *ngIf="ticket.type"><div>Type : <b>{{ticket.type | uppercase}}</b></div></div>
       </div>
     </div>
     </div>
@@ -31,3 +29,24 @@
 
 </div>
 
+<div id="myModal" class="modal fade" *ngIf="currentTicket">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3 style="margin: auto;">{{currentTicket.subject}}</h3>
+            </div>
+
+            <div class="modal-body">
+               <div class="status">Status: <span style="font-weight: 500; color: green">{{currentTicket.status | uppercase}}</span></div>
+                <p style="margin-top: 12px;margin-bottom: 30px;">{{currentTicket.description}}</p>
+                <div style="font-weight: 100;"> Last updated: <span style="font-weight: 500">{{currentTicket.updated_at}}</span></div>
+                <div style="font-weight: 100;">Created on: <span style="font-weight: 500;">{{currentTicket.created_at}}</span></div>
+            </div>
+
+            <div class="modal-footer modal-footer--mine">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
