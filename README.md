@@ -18,4 +18,6 @@ Features:
 
 Run the python happy tests using - docker-compose -f docker-compose.yml run --rm flask_demo python manage.py test
 
+Application can be accessed by browsing on localhost
+
 ![](https://github.com/SiddharthMalhotra/docker-flask-angular/blob/master/zd.gif)
