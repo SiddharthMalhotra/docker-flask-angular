@@ -25,12 +25,25 @@ def ping():
 
 @route.route("/api/tickets")
 def tickets():
-    url = "https://projectintern.zendesk.com/api/v2/tickets.json"
-    page_number = request.args["page"]
-    queryparam={ 'per_page': 25, 'page': page_number}
-    r = requests.get(url, auth=("codemalhotra@gmail.com"+"/token", "Uv55d2V7t1tCzZnN2Omyc4rIGCi1lksDBCpWjUSC"), params=queryparam)
-    # new_dict = json.loads(r.text)
-    return r.text
+	try:
+	    url = "https://projectintern.zendesk.com/api/v2/tickets.json"
+	    page_number = request.args["page"]
+	    queryparam={ 'per_page': 25, 'page': page_number}
+	    r = requests.get(url, auth=("codemalhotra@gmail.com"+"/token", "Uv55d2V7t1tCzZnN2Omyc4rIGCi1lksDBCpWjUSC"), params=queryparam)
+	    if r.status_code == 401:
+	    	print ("Not authorized.")
+	    elif r.status_code == 404: 
+	    	print ("API not found")
+	    elif r.status_code == 503:
+	    	print ("API is unavailable")
+	    else:
+	    	return r.text
+
+	except ConnectionError:
+		print("API is not valid.") 
+	except Exception:
+		print("Please try again.")
+
     # return jsonify(r.text)
     
 
