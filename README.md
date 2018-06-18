@@ -15,3 +15,6 @@ Features:
 - Pagination disabled when next_page= null
 - Clickable cards: single ticket view
 - Responsive
+
+
+![alt text] (https://github.com/SiddharthMalhotra/docker-flask-angular/blob/master/zd.gif)
