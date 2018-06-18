@@ -17,4 +17,4 @@ Features:
 - Responsive
 
 
-![alt text] (https://github.com/SiddharthMalhotra/docker-flask-angular/blob/master/zd.gif)
+![](https://github.com/SiddharthMalhotra/docker-flask-angular/blob/master/zd.gif)
