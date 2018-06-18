@@ -2,6 +2,7 @@
 """Unittest for testing app configs"""
 
 import unittest
+import requests
 from flask import current_app
 
 from server.main.api import create_app_blueprint
@@ -25,6 +26,24 @@ class TestDevelopmentConfig(BaseTestCase):
                              msg="Development DEBUG config value should be true")
             self.assertEqual(current_app.config['TESTING'], False,
                              msg="Development TESTING config value should be false")
+            url = "https://projectintern.zendesk.com/api/v2/tickets.json"
+            r = requests.get(url)
+            self.assertEqual(r.status_code, 401)
+
+    """Tests to establish authorization to access API"""
+
+    def test_is_not_authorized(self):
+        # In case the user is not authorized
+        url = "https://projectintern.zendesk.com/api/v2/tickets.json"
+        r = requests.get(url)
+        self.assertEqual(r.status_code, 401)
+
+    def test_is_authorized(self):
+         # In case the user is authorized 
+         url = "https://projectintern.zendesk.com/api/v2/tickets.json"
+         auth=("codemalhotra@gmail.com"+"/token", "Uv55d2V7t1tCzZnN2Omyc4rIGCi1lksDBCpWjUSC")
+         r = requests.get(url, auth=auth)
+         self.assertEqual(r.status_code, 200)
 
 class TestTestingConfig(BaseTestCase):
     """Class to test test app configs"""

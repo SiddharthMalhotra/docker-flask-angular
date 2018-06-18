@@ -9,7 +9,7 @@ import os
 class Config(object):
     """ Common config options """
     APPNAME = 'Project Intern'
-    SUPPORT_EMAIL = 'mr.san.kumar@gmail.com'
+    SUPPORT_EMAIL = 'codemalhotra@gmail.com'
     VERSION = '2.0.0'
     APPID = 'fl_angular_docker'
     SECRET_KEY = os.urandom(24)

@@ -16,5 +16,6 @@ Features:
 - Clickable cards: single ticket view
 - Responsive
 
+Run the python happy tests using - docker-compose -f docker-compose.yml run --rm flask_demo python manage.py test
 
 ![](https://github.com/SiddharthMalhotra/docker-flask-angular/blob/master/zd.gif)
